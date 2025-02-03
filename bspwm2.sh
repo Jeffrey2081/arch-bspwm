@@ -1,7 +1,7 @@
 #!/bin/bash
 # Update system and install necessary packages
 sudo pacman -Syu --noconfirm
-sudo pacman -S --noconfirm base-devel xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot dbus
+sudo pacman -S --noconfirm base-devel xorg-server xorg-xinit unzip xterm xorg-xrandr xorg-xsetroot dbus
 
 # Make directories
 mkdir ~/.config
