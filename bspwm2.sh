@@ -1,5 +1,6 @@
 #!/bin/bash
 # Update system and install necessary packages
+sudo sed -i 's/^#ParallelDownloads = [0-9]\+/ParallelDownloads = 5/' /etc/pacman.conf
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm base-devel xorg-server xorg-xinit unzip xterm xorg-xrandr xorg-xsetroot dbus
 
@@ -9,13 +10,11 @@ mkdir ~/.config/bspwm
 mkdir ~/.config/sxhkd
 mkdir ~/.config/polybar
 
-
 # Apply config
 cp -r bspwm/ $HOME/.config/
 cp -r sxhkd/ $HOME/.config/
 cp -r polybar/ $HOME/.config/
 cp -r alacritty/ $HOME/.config/
-
 mv $HOME/.zshrc $HOME/.zshrc_old
 cp config/zsh/.zshrc $HOME/
 curl -sS https://starship.rs/install.sh | sh
@@ -28,7 +27,10 @@ sudo chown -R $(whoami):$(whoami) yay
 cd yay
 makepkg -si --noconfirm
 
-yay -Syu --noconfirm bspwm lightdm lxappearance sxhkd rofi polybar picom feh wget feh alacritty thunar variety nerd-fonts zsh  xf86-video-intel gedit
+#Installing apps
+yay -Syu --noconfirm bspwm lightdm lxappearance sxhkd rofi polybar picom feh wget feh alacritty thunar nerd-fonts zsh  xf86-video-intel gedit
+
+#Downloading wallpaper
 wget https://wallpapers.com/1920x1080-aesthetic -O $HOME/wallpaper.jpg
 # Installing fonts
 yay -S papirus-icon-theme ttf-font-awesome --noconfirm
@@ -47,7 +49,6 @@ sudo ./install.sh
 curl -fsS https://dl.brave.com/install.sh | sh
 # Reloading Font
 fc-cache -vf
-# Removing zip Files
-rm ./FiraCode.zip ./Meslo.zip
+
 
 
