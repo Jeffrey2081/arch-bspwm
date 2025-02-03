@@ -8,15 +8,14 @@ mkdir ~/.config
 mkdir ~/.config/bspwm
 mkdir ~/.config/sxhkd
 mkdir ~/.config/polybar
-mkdir ~/.config/alacritty
-mkdir ~/.config/nvim
+
 
 # Apply config
 cp -r bspwm/ $HOME/.config/
 cp -r sxhkd/ $HOME/.config/
 cp -r polybar/ $HOME/.config/
 cp -r alacritty/ $HOME/.config/
-cp -r nvim/ $HOME/.config/
+
 
 mv $HOME/.zshrc $HOME/.zshrc_old
 cp config/zsh/.zshrc $HOME/
@@ -31,7 +30,8 @@ cd yay
 makepkg -si --noconfirm
 
 yay -Syu --noconfirm bspwm lightdm lxappearance sxhkd rofi polybar picom feh wget feh alacritty thunar variety nerd-fonts zsh  xf86-video-intel gedit
-
+cd ~
+wget https://wallpapers.com/1920x1080-aesthetic -O $HOME/wallpaper.jpg
 # Installing fonts
 yay -S papirus-icon-theme ttf-font-awesome --noconfirm
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
