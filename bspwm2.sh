@@ -9,7 +9,8 @@ mkdir ~/.config
 mkdir ~/.config/bspwm
 mkdir ~/.config/sxhkd
 mkdir ~/.config/polybar
-
+#wallpaper
+cp -r wallpaper.jpg $HOME/wallpaper.jpg
 # Apply config
 cp -r bspwm/ $HOME/.config/
 cp -r sxhkd/ $HOME/.config/
@@ -30,8 +31,6 @@ makepkg -si --noconfirm
 #Installing apps
 yay -Syu --noconfirm bspwm lightdm lxappearance sxhkd rofi polybar picom feh wget feh alacritty thunar nerd-fonts zsh  xf86-video-intel gedit
 
-#Downloading wallpaper
-wget https://wallpapers.com/1920x1080-aesthetic -O $HOME/wallpaper.jpg
 # Installing fonts
 yay -S papirus-icon-theme ttf-font-awesome --noconfirm
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
