@@ -20,7 +20,7 @@ mv $HOME/.zshrc $HOME/.zshrc_old
 cp config/zsh/.zshrc $HOME/
 curl -sS https://starship.rs/install.sh | sh
 starship preset gruvbox-rainbow -o ~/.config/starship.toml
-
+chmod -R +x ~/.config/*
 # Install yay
 cd /opt
 sudo git clone https://aur.archlinux.org/yay.git
@@ -29,7 +29,7 @@ cd yay
 makepkg -si --noconfirm
 
 #Installing apps
-yay -Syu --noconfirm bspwm lightdm lxappearance sxhkd rofi polybar picom feh wget feh alacritty thunar nerd-fonts zsh  xf86-video-intel gedit
+yay -Syu --noconfirm bspwm lightdm lxappearance sxhkd rofi polybar picom pavucontrol feh wget feh alacritty thunar nitrogen nerd-fonts zsh  xf86-video-intel gedit
 
 # Installing fonts
 yay -S papirus-icon-theme ttf-font-awesome --noconfirm
@@ -43,7 +43,7 @@ cd ~
 git clone https://github.com/vinceliuice/Layan-cursors.git
 cd ~/Layan-cursors/
 sudo ./install.sh
-
+systemctl --user enable dbus --now
 #Installing my apps
 curl -fsS https://dl.brave.com/install.sh | sh
 # Reloading Font
