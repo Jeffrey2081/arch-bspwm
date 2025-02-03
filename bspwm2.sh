@@ -31,7 +31,7 @@ sudo chown -R $(whoami):$(whoami) yay
 cd yay
 makepkg -si --noconfirm
 
-yay -Syu --noconfirm bspwm lightdm sxhkd rofi polybar picom feh wget feh alacritty thunar variety nerd-fonts zsh  xf86-video-intel gedit
+yay -Syu --noconfirm bspwm lightdm lxappearance sxhkd rofi polybar picom feh wget feh alacritty thunar variety nerd-fonts zsh  xf86-video-intel gedit
 
 # Installing fonts
 yay -S papirus-icon-theme ttf-font-awesome --noconfirm
