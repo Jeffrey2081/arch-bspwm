@@ -1,7 +1,5 @@
 #!/bin/bash
 #Use archinstall command to install the os and choose bspwm desktop manager
-#!/bin/bash
-
 # Define the pacman.conf file path
 PACMAN_CONF="/etc/pacman.conf"
 
