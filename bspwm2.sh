@@ -2,7 +2,7 @@
 # Update system and install necessary packages
 sudo sed -i 's/^#ParallelDownloads = [0-9]\+/ParallelDownloads = 5/' /etc/pacman.conf
 sudo pacman -Syu --noconfirm
-sudo pacman -S --noconfirm base-devel xorg-server xorg-xinit unzip xterm xorg-xrandr xorg-xsetroot dbus
+sudo pacman -S --noconfirm base-devel xorg xorg-server xorg-xinit unzip xterm xorg-xrandr xorg-xsetroot dbus
 
 # Make directories
 mkdir ~/.config
