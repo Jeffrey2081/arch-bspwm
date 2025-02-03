@@ -1,0 +1,20 @@
+#! /bin/sh
+xrandr -r 75
+sxhkd &
+$HOME/.config/polybar/launch.sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+bspc monitor -d I II III IV V VI 
+
+bspc config border_width         0
+bspc config window_gap           8
+
+bspc config split_ratio          0.5
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+picom --config "$HOME/.config/bspwm/picom.conf" &
+feh --bg-fill $HOME/wallpaper.jpg
+xsetroot -cursor_name left_ptr
+picom &
+variety
