@@ -29,11 +29,11 @@ mkdir ~/.config/alacritty
 mkdir ~/.config/nvim
 
 # Apply config
-cp -r config/bspwm $HOME/.config/
-cp -r config/sxhkd $HOME/.config/
-cp -r config/polybar $HOME/.config/
-cp -r config/alacritty $HOME/.config/
-cp -r config/nvim $HOME/.config/
+cp -r bspwm/ $HOME/.config/
+cp -r sxhkd/ $HOME/.config/
+cp -r polybar/ $HOME/.config/
+cp -r alacritty/ $HOME/.config/
+cp -r nvim/ $HOME/.config/
 
 mv $HOME/.zshrc $HOME/.zshrc_old
 cp config/zsh/.zshrc $HOME/
