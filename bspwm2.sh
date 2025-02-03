@@ -1,21 +1,4 @@
 #!/bin/bash
-#Use archinstall command to install the os and choose bspwm desktop manager
-# Define the pacman.conf file path
-PACMAN_CONF="/etc/pacman.conf"
-
-# Check if the script is run as root
-if [[ $EUID -ne 0 ]]; then
-    echo "Please run this script as root or use sudo."
-    exit 1
-fi
-
-# Enable ParallelDownloads (Uncomment and set a value)
-if grep -q "^#ParallelDownloads" "$PACMAN_CONF"; then
-    sed -i 's/^#ParallelDownloads = [0-9]*/ParallelDownloads = 10/' "$PACMAN_CONF"
-    echo "ParallelDownloads enabled and set to 10."
-else
-    echo "ParallelDownloads is already enabled or not found."
-fi
 # Update system and install necessary packages
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm base-devel xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot dbus
