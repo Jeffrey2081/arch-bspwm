@@ -15,6 +15,7 @@ cp -r wallpaper.jpg $HOME/wallpaper.jpg
 cp -r bspwm/ $HOME/.config/
 cp -r sxhkd/ $HOME/.config/
 cp -r polybar/ $HOME/.config/
+cp -r rofi $HOME/.config/
 cp -r alacritty/ $HOME/.config/
 mv $HOME/.zshrc $HOME/.zshrc_old
 cp config/zsh/.zshrc $HOME/
@@ -25,6 +26,7 @@ chmod +x ~/.config/bspwm/bspwmrc
 chmod +x ~/.config/sxhkd/sxhkdrc
 chmod +x ~/.config/bspwm/bspwmrc
 chmod +x ~/.config/polybar/launch.sh
+chmod + ~/.config/rofi/powermenu/powermenu.sh
 # Install yay
 cd /opt
 sudo git clone https://aur.archlinux.org/yay.git
