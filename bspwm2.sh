@@ -2,7 +2,7 @@
 # Update system and install necessary packages
 sudo sed -i 's/^#ParallelDownloads = [0-9]\+/ParallelDownloads = 5/' /etc/pacman.conf
 sudo pacman -Syu --noconfirm
-sudo pacman -S --noconfirm base-devel xorg xorg-server xorg-xinit unzip xterm xorg-xrandr xorg-xsetroot dbus
+sudo pacman -S --noconfirm base-devel xorg xorg-server xorg-xinit unzip xorg-xrandr xorg-xsetroot dbus
 
 # Make directories
 mkdir ~/.config
@@ -27,6 +27,8 @@ chmod +x ~/.config/sxhkd/sxhkdrc
 chmod +x ~/.config/bspwm/bspwmrc
 chmod +x ~/.config/polybar/onedark-theme/launch.sh
 chmod +x ~/.config/polybar/onedark-theme/scripts/powermenu.sh
+
+
 # Install yay
 cd /opt
 sudo git clone https://aur.archlinux.org/yay.git
@@ -35,7 +37,7 @@ cd yay
 makepkg -si --noconfirm
 
 #Installing apps
-yay -Syu --noconfirm bspwm lightdm lxappearance sxhkd mpd rofi polybar picom pavucontrol feh wget alacritty thunar nerd-fonts zsh gedit
+yay -Syu --noconfirm bspwm lightdm xbps lxappearance sxhkd mpd rofi polybar picom pavucontrol feh wget alacritty thunar nerd-fonts zsh gedit
 yay -R --noconfirm xterm rxvt-unicode
 # Installing fonts
 yay -S papirus-icon-theme ttf-font-awesome --noconfirm
@@ -49,7 +51,7 @@ cd ~
 git clone https://github.com/vinceliuice/Layan-cursors.git
 cd ~/Layan-cursors/
 sudo ./install.sh
-systemctl --user enable dbus --now
+systemctl --user enable dbus 
 #Installing my apps
 curl -fsS https://dl.brave.com/install.sh | sh
 # Reloading Font
