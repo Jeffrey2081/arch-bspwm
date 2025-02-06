@@ -4,13 +4,13 @@
 
 
 # terminal emulator
-super + shift + c
+super + alt + c
                 code
 super + e
          thunar
 
 super + r
-        rofi -show drun
+        bash ~/.config/rofi/launcher.sh 
 
 super + x
 	alacritty
