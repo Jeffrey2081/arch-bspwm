@@ -18,7 +18,7 @@ cp -r polybar/ $HOME/.config/
 cp -r rofi $HOME/.config/
 cp -r alacritty/ $HOME/.config/
 mv $HOME/.zshrc $HOME/.zshrc_old
-cp config/zsh/.zshrc $HOME/
+cp -r .zshrc $HOME/
 curl -sS https://starship.rs/install.sh | sh
 starship preset gruvbox-rainbow -o ~/.config/starship.toml
 chmod -R +x ~/.config/*
@@ -37,7 +37,7 @@ cd yay
 makepkg -si --noconfirm
 
 #Installing apps
-yay -Syu --noconfirm bspwm lightdm xbps lxappearance neovim sxhkd mpd rofi polybar picom pavucontrol feh wget alacritty thunar nerd-fonts zsh gedit
+yay -Syu --noconfirm bspwm lightdm xbps lxappearance neovim fastfetch sxhkd mpd rofi polybar picom pavucontrol feh wget alacritty thunar nerd-fonts zsh gedit
 yay -R --noconfirm xterm rxvt-unicode
 # Installing fonts
 yay -S papirus-icon-theme ttf-font-awesome --noconfirm
