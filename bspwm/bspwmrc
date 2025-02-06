@@ -1,5 +1,6 @@
 #! /bin/sh
 sxhkd &
+feh --bg-fill ~/wallpaper.jpg &
 bash  ~/.config/polybar/onedark-theme/launch.sh &
 
 pgrep -x sxhkd > /dev/null || sxhkd &
