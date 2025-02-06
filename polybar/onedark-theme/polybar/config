@@ -28,7 +28,7 @@ font-1 = JetBrainsMono Nerd Font:size=19;5
 font-2 = Material Design Icons:style=Bold:size=15;3
 font-3 = unifont:fontformat=truetype:size=13:antialias=true;
 
-modules-left = launcher  date round-left updates round-right mpd round-left polywins round-right
+modules-left = launcher date round-left round-right mpd round-left polywins round-right
 modules-center =    bspwm
 modules-right =     round-left pulseaudio round-right memory cpu round-left eth round-right powermenu
 
