@@ -1,5 +1,4 @@
 #! /bin/sh
-xrandr -r 75
 sxhkd &
 bash  ~/.config/polybar/onedark-theme/launch.sh &
 
@@ -17,4 +16,3 @@ bspc config gapless_monocle      true
 
 xsetroot -cursor_name left_ptr
 
-variety
