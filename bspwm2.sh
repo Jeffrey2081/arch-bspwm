@@ -16,6 +16,7 @@ cp -r bspwm/ $HOME/.config/
 cp -r sxhkd/ $HOME/.config/
 cp -r polybar/ $HOME/.config/
 cp -r rofi $HOME/.config/
+sudo cp -r fonts/* /usr/share/fonts/
 cp -r alacritty/ $HOME/.config/
 mv $HOME/.zshrc $HOME/.zshrc_old
 cp -r .zshrc $HOME/
