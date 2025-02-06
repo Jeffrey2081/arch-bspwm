@@ -25,8 +25,8 @@ chmod -R +x ~/.config/*
 chmod +x ~/.config/bspwm/bspwmrc
 chmod +x ~/.config/sxhkd/sxhkdrc
 chmod +x ~/.config/bspwm/bspwmrc
-chmod +x ~/.config/polybar/launch.sh
-chmod + ~/.config/rofi/powermenu/powermenu.sh
+chmod +x ~/.config/polybar/onedark-theme/launch.sh
+chmod +x ~/.config/polybar/onedark-theme/scripts/powermenu.sh
 # Install yay
 cd /opt
 sudo git clone https://aur.archlinux.org/yay.git
