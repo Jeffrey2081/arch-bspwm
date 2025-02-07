@@ -20,15 +20,13 @@ sudo cp -r fonts/* /usr/share/fonts/
 cp -r alacritty/ $HOME/.config/
 mv $HOME/.zshrc $HOME/.zshrc_old
 cp -r .zshrc $HOME/
-curl -sS https://starship.rs/install.sh | sh
-starship preset gruvbox-rainbow -o ~/.config/starship.toml
 chmod -R +x ~/.config/*
 chmod +x ~/.config/bspwm/bspwmrc
 chmod +x ~/.config/sxhkd/sxhkdrc
 chmod +x ~/.config/bspwm/bspwmrc
 chmod +x ~/.config/polybar/onedark-theme/launch.sh
-chmod +x ~/.config/polybar/onedark-theme/scripts/powermenu.sh
-
+chmod +x ~/.config/polybar/onedark-theme/polybar/scripts/powermenu.sh
+chmod +x ~/.config/polybar/onedark-theme/polybar/scripts/update-system.sh
 
 # Install yay
 cd /opt
@@ -38,7 +36,7 @@ cd yay
 makepkg -si --noconfirm
 
 #Installing apps
-yay -Syu --noconfirm bspwm lightdm xbps lxappearance neovim fastfetch sxhkd mpd rofi polybar picom pavucontrol feh wget alacritty thunar nerd-fonts zsh gedit
+yay -Syu --noconfirm bspwm wmctrl lightdm lxappearance neovim xclip fastfetch sxhkd mpd rofi polybar picom pavucontrol feh wget alacritty thunar nerd-fonts zsh gedit
 yay -R --noconfirm xterm rxvt-unicode
 # Installing fonts
 yay -S papirus-icon-theme ttf-font-awesome --noconfirm
