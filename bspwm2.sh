@@ -36,7 +36,7 @@ cd yay
 makepkg -si --noconfirm
 
 #Installing apps
-yay -Syu --noconfirm bspwm wmctrl lightdm lxappearance neovim xclip fastfetch sxhkd mpd rofi polybar picom pavucontrol feh wget alacritty thunar nerd-fonts zsh gedit
+yay -Syu --noconfirm bspwm pacman-contrib wmctrl lightdm lxappearance neovim xclip fastfetch sxhkd mpd rofi polybar picom pavucontrol feh wget alacritty thunar nerd-fonts zsh gedit
 yay -R --noconfirm xterm rxvt-unicode
 # Installing fonts
 yay -S papirus-icon-theme ttf-font-awesome --noconfirm
