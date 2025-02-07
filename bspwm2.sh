@@ -36,7 +36,7 @@ cd yay
 makepkg -si --noconfirm
 
 #Installing apps
-yay -Syu --noconfirm bspwm starship pacman-contrib wmctrl lightdm lxappearance neovim xclip fastfetch sxhkd mpd rofi polybar picom pavucontrol feh wget alacritty thunar nerd-fonts zsh gedit
+yay -Syu --noconfirm bspwm starship pacman-contrib wmctrl code lightdm lxappearance neovim xclip fastfetch sxhkd mpd rofi polybar picom pavucontrol feh wget alacritty thunar nerd-fonts zsh gedit
 yay -R --noconfirm xterm rxvt-unicode
 # Installing fonts
 yay -S papirus-icon-theme ttf-font-awesome --noconfirm
@@ -51,12 +51,20 @@ git clone https://github.com/vinceliuice/Layan-cursors.git
 cd ~/Layan-cursors/
 sudo ./install.sh
 systemctl --user enable dbus 
-#Installing my apps
+#Installing my apps and setting up qemu
 curl -fsS https://dl.brave.com/install.sh | sh
+yay -S qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat ebtables iptables libguestfs
+sudo systemctl enable --now libvirtd
+sudo sed -i 's/^#\(unix_sock_group = "libvirt"\)/\1/; s/^#\(unix_sock_rw_perms = "0770"\)/\1/' /etc/libvirt/libvirtd.conf
+sudo systemctl restart libvirtd
+sudo usermod -a -G libvirt $(whoami)
+newgrp libvirt
+
 # Reloading Font
 chsh -s $(which zsh)
 fc-cache -vf
-
+echo "⚠️ WARNING: restarting in 10 seconds!"  
+sleep 5 &&
 
 
 
