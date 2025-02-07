@@ -28,7 +28,7 @@ font-1 = JetBrainsMono Nerd Font:size=19;5
 font-2 = Material Design Icons:style=Bold:size=15;3
 font-3 = unifont:fontformat=truetype:size=13:antialias=true;
 
-modules-left = launcher date round-left round-right mpd round-left polywins round-right
+modules-left = launcher  date round-left updates round-right mpd round-left polywins round-right
 modules-center =    bspwm
 modules-right =     round-left pulseaudio round-right memory cpu round-left eth round-right powermenu
 
@@ -96,7 +96,7 @@ content = 異
 content-background = black
 content-foreground = green
 
-click-left = bash ~/.config/rofi/launchers/type-7/launcher.sh
+click-left = bash ~/.config/rofi/launcher.sh
 click-right = launcher_t1
 
 
@@ -204,7 +204,7 @@ label-disconnected-foreground = #5dabeb
 
 [module/eth]
 type = internal/network
-interface = void0
+interface = eno1
 interval = 3.0
 
 format-connected-prefix = "󰖩 "
@@ -365,15 +365,17 @@ click-left = ~/.config/polybar/onedark-theme/polybar/scripts/powermenu.sh
 format-underline = #704214
 
 [module/updates]
+[module/updates]
 type = custom/script
-exec = sudo xbps-install -S > /dev/null 2>&1; ~/.config/polybar/onedark-theme/polybar/scripts/xbps-updates
+exec = checkupdates | wc -l
 format = <label>
-interval = 4600 
-label =󰏖 %output% 
+interval = 4600
+label = 󰏖 %output%
 label-padding = 0
-;label-foreground = #BF616A
 label-foreground = #fca2aa
 label-background = ${colors.rounds}
+click-right = bash ~/.config/polybar/onedark-theme/polybar/scripts/update-system.sh
+
 
 [module/weather]
 
