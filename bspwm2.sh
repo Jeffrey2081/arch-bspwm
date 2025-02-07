@@ -27,7 +27,7 @@ chmod +x ~/.config/bspwm/bspwmrc
 chmod +x ~/.config/polybar/onedark-theme/launch.sh
 chmod +x ~/.config/polybar/onedark-theme/polybar/scripts/powermenu.sh
 chmod +x ~/.config/polybar/onedark-theme/polybar/scripts/update-system.sh
-
+chmod +x ~/.zshrc
 # Install yay
 cd /opt
 sudo git clone https://aur.archlinux.org/yay.git
@@ -54,6 +54,7 @@ systemctl --user enable dbus
 #Installing my apps
 curl -fsS https://dl.brave.com/install.sh | sh
 # Reloading Font
+chsh -s $(which zsh)
 fc-cache -vf
 
 
