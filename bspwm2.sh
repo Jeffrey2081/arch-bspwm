@@ -60,6 +60,29 @@ sudo systemctl restart libvirtd
 sudo usermod -a -G libvirt $(whoami)
 newgrp libvirt
 
+#Disabling grub bootloader timeout
+
+GRUB_CONFIG="/etc/default/grub"
+
+# Backup the existing GRUB config
+cp "$GRUB_CONFIG" "$GRUB_CONFIG.bak"
+
+# Modify GRUB_TIMEOUT value
+sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/' "$GRUB_CONFIG"
+
+echo "✅ GRUB timeout disabled. Updating GRUB..."
+
+# Update GRUB
+if [ -f /boot/grub/grub.cfg ]; then
+    grub-mkconfig -o /boot/grub/grub.cfg
+elif [ -f /boot/grub2/grub.cfg ]; then
+    grub-mkconfig -o /boot/grub2/grub.cfg
+else
+    echo "❌ GRUB config not found! Manual update may be required."
+    exit 1
+fi
+
+echo "✅ GRUB update complete. ."
 # Reloading Font
 chsh -s $(which zsh)
 fc-cache -vf
