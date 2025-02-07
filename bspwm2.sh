@@ -59,7 +59,7 @@ sudo sed -i 's/^#\(unix_sock_group = "libvirt"\)/\1/; s/^#\(unix_sock_rw_perms =
 sudo systemctl restart libvirtd
 sudo usermod -a -G libvirt $(whoami)
 newgrp libvirt
-
+sudo virsh net-autostart default
 #Disabling grub bootloader timeout
 
 GRUB_CONFIG="/etc/default/grub"
