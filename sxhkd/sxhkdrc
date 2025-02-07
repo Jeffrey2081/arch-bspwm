@@ -1,7 +1,13 @@
 #
 # wm independent hotkeys
 #
+# Copy to clipboard (using selected text or from stdin)
+ctrl + c
+    xclip -selection clipboard
 
+# Paste from clipboard
+ctrl + v
+    xclip -selection clipboard -o
 
 # terminal emulator
 super + alt + c
@@ -41,13 +47,13 @@ super + b
 	brave
 
 # spotify start
-super + shift + s
-  spotify
+
+
 
 # quit/restart bspwm
-super + alt + {q,r}
-	bspc {quit,wm -r}
-
+ctrl + shift +  esc
+          bspc wm -r
+	
 # close and kill
 super + q
 	bspc node -c
