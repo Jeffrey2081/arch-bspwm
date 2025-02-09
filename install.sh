@@ -86,8 +86,7 @@ echo "✅ GRUB update complete. ."
 # Reloading Font
 chsh -s $(which zsh)
 fc-cache -vf
-echo "⚠️ WARNING: restarting in 10 seconds!"  
-sleep 5 &&
-
+echo "⚠️ WARNING: restarting "  
+sleep 5 && reboot
 
 
