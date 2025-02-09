@@ -2,7 +2,7 @@
 
 A minimal Arch Linux setup script that configures BSPWM after installing Arch Linux using `archinstall` with the minimal preset.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Arch_Linux_%22Crystal%22_icon.svg/640px-Arch_Linux_%22Crystal%22_icon.svg.png" width="32" height="32" alt="Arch Linux"/> 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Arch_Linux_%22Crystal%22_icon.svg/640px-Arch_Linux_%22Crystal%22_icon.svg.png" width="128" height="128" alt="Arch Linux"/> 
 
 ## 🚀 Features
 - **⚡ Automated Configuration**: Applies BSPWM setup seamlessly after Arch Linux installation.
