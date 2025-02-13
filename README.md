@@ -1,6 +1,7 @@
 # 🏴‍☠️ Arch BSPWM Installer
 
-A minimal Arch Linux setup script that configures BSPWM after installing Arch Linux using `archinstall` with the minimal presetor from my [https://github.com/Jeffrey2081/arch-install](arch-install script).
+A minimal Arch Linux setup script that configures BSPWM after installing Arch Linux 
+using `archinstall` with the minimal presetor from my [https://github.com/Jeffrey2081/arch-install](arch-install script).
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Arch_Linux_%22Crystal%22_icon.svg/640px-Arch_Linux_%22Crystal%22_icon.svg.png" width="128" height="128" alt="Arch Linux"/> 
 
