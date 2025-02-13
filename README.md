@@ -1,6 +1,6 @@
 # 🏴‍☠️ Arch BSPWM Installer
 
-A minimal Arch Linux setup script that configures BSPWM after installing Arch Linux using `archinstall` with the minimal preset.
+A minimal Arch Linux setup script that configures BSPWM after installing Arch Linux using `archinstall` with the minimal presetor from my [https://github.com/Jeffrey2081/arch-install](arch-install script).
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Arch_Linux_%22Crystal%22_icon.svg/640px-Arch_Linux_%22Crystal%22_icon.svg.png" width="128" height="128" alt="Arch Linux"/> 
 
@@ -22,7 +22,7 @@ A minimal Arch Linux setup script that configures BSPWM after installing Arch Li
    sudo dd if=archlinux.iso of=/dev/sdX bs=4M status=progress && sync
    ```
    (Replace `/dev/sdX` with your USB drive.)
-3. 🏁 Boot from the USB and install Arch Linux using `archinstall`, selecting the **minimal** preset or from my [https://github.com/Jeffrey2081/arch-install](arch-install script)
+3. 🏁 Boot from the USB and install Arch Linux using `archinstall`, selecting the **minimal** preset.
 4. 🏗️ After installation, clone this repository and run the setup script:
    ```bash
    git clone https://github.com/Jeffrey2081/arch-bspwm.git
