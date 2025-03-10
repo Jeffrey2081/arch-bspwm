@@ -1,5 +1,5 @@
 #! /bin/sh
-xrandr -r 75
+
 sxhkd &
 feh --bg-fill ~/wallpaper.jpg &
 bash  ~/.config/polybar/onedark-theme/launch.sh &
