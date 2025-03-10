@@ -16,17 +16,17 @@ theme='style-1'
 # CMDs
 lastlogin="`last $USER | head -n1 | tr -s ' ' | cut -d' ' -f5,6,7`"
 uptime="`uptime -p | sed -e 's/up //g'`"
-host=`hostname`
+host=`uname -n`
 
 # Options
-hibernate=''
-shutdown=''
-reboot=''
-lock=''
-suspend=''
-logout=''
-yes=''
-no=''
+hibernate='  Hibernate'
+shutdown='  Shutdown'
+reboot='  Restart'
+lock='  Lock'
+suspend='  Sleep'
+logout='  Logout' 
+yes='  Yes'
+no='  No' 
 
 # Rofi CMD
 rofi_cmd() {
