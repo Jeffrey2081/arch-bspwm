@@ -53,7 +53,7 @@ sudo ./install.sh
 systemctl --user enable dbus 
 #Installing my apps and setting up qemu
 curl -fsS https://dl.brave.com/install.sh | sh
-yay -S qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat ebtables iptables libguestfs
+yay -S qemu-full virt-manager virt-viewer dnsmasq vde2 jetbrains-idea-ce bridge-utils openbsd-netcat ebtables iptables libguestfs 
 sudo systemctl enable --now libvirtd
 sudo sed -i 's/^#\(unix_sock_group = "libvirt"\)/\1/; s/^#\(unix_sock_rw_perms = "0770"\)/\1/' /etc/libvirt/libvirtd.conf
 sudo systemctl restart libvirtd
