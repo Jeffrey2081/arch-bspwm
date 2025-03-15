@@ -6,7 +6,7 @@ sudo pacman -S --noconfirm base-devel xorg xorg-server reflector rsync curl xorg
 con=$(curl -4 ifconfig.co/country-iso)
 echo -ne "
 -------------------------------------------------------------------------
-                    Setting up $iso mirrors for faster downloads
+                    Setting up $con mirrors for faster downloads
 -------------------------------------------------------------------------
 "
 sudo reflector --verbose -c "$con" -l 5 --sort rate --save /etc/pacman.d/mirrorlist
