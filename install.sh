@@ -4,6 +4,11 @@ sudo sed -i 's/^#ParallelDownloads = [0-9]\+/ParallelDownloads = 5/' /etc/pacman
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm base-devel xorg xorg-server reflector rsync curl xorg-xinit unzip xorg-xrandr xorg-xsetroot dbus
 con=$(curl -4 ifconfig.co/country-iso)
+echo -ne "
+-------------------------------------------------------------------------
+                    Setting up $iso mirrors for faster downloads
+-------------------------------------------------------------------------
+"
 sudo reflector --verbose -c "$con" -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 # Make directories
 mkdir ~/.config
