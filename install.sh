@@ -3,7 +3,8 @@
 sudo sed -i 's/^#ParallelDownloads = [0-9]\+/ParallelDownloads = 5/' /etc/pacman.conf
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm base-devel xorg xorg-server reflector rsync curl xorg-xinit unzip xorg-xrandr xorg-xsetroot dbus
-sudo reflector -a 48 -c "$iso" -f 5 -l 20 --sort rate --save /etc/pacman.d/mirrorlist
+con=$(curl -4 ifconfig.co/country-iso)
+sudo reflector -c "$con" -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 # Make directories
 mkdir ~/.config
 mkdir ~/.config/bspwm
