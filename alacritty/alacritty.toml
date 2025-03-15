@@ -42,7 +42,7 @@ family = "FiraCode Nerd Font"
 style = "Medium"
 
 [window]
-opacity = 0.9
+opacity = 0.75
 
 [window.padding]
 x = 8
