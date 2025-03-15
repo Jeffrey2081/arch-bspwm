@@ -30,16 +30,16 @@ chmod +x ~/.config/polybar/onedark-theme/polybar/scripts/update-system.sh
 chmod +x ~/.zshrc
 # Install yay
 cd /opt
-sudo git clone https://aur.archlinux.org/yay.git
-sudo chown -R $(whoami):$(whoami) yay
-cd yay
+sudo git clone https://aur.archlinux.org/paru-bin
+sudo chown -R $(whoami):$(whoami) paru-bin
+cd paru-bin
 makepkg -si --noconfirm
 
 #Installing apps
-yay -Syu --noconfirm bspwm samba cifs-utils starship lightdm-gtk-greeter variety pacman-contrib wmctrl code lightdm gtk3 gtk3-nocsd qt5-base qt5ct kvantum-qt5 lxappearance neovim xclip fastfetch sxhkd mpd rofi polybar picom pavucontrol feh wget alacritty thunar nerd-fonts zsh gedit
-yay -R --noconfirm xterm rxvt-unicode
+paru -Syu --noconfirm update-grub bspwm samba cifs-utils starship lightdm-gtk-greeter variety pacman-contrib wmctrl code lightdm gtk3 gtk3-nocsd qt5-base qt5ct kvantum-qt5 lxappearance neovim xclip fastfetch sxhkd mpd rofi polybar picom pavucontrol feh wget alacritty thunar nerd-fonts zsh gedit
+paru -R --noconfirm xterm rxvt-unicode
 # Installing fonts
-yay -S papirus-icon-theme ttf-font-awesome --noconfirm
+paru -S papirus-icon-theme ttf-font-awesome --noconfirm
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
 sudo unzip FiraCode.zip -d /usr/share/fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
@@ -53,7 +53,7 @@ sudo ./install.sh
 systemctl --user enable dbus 
 #Installing my apps and setting up qemu
 curl -fsS https://dl.brave.com/install.sh | sh
-yay -S qemu-full virt-manager virt-viewer dnsmasq vde2 jetbrains-idea-ce bridge-utils openbsd-netcat ebtables iptables libguestfs 
+paru -S qemu-full virt-manager virt-viewer dnsmasq vde2 jetbrains-idea-ce bridge-utils openbsd-netcat ebtables iptables libguestfs 
 sudo systemctl enable --now libvirtd
 sudo sed -i 's/^#\(unix_sock_group = "libvirt"\)/\1/; s/^#\(unix_sock_rw_perms = "0770"\)/\1/' /etc/libvirt/libvirtd.conf
 sudo systemctl restart libvirtd
@@ -61,27 +61,13 @@ sudo usermod -a -G libvirt $(whoami)
 newgrp libvirt
 sudo virsh net-autostart default
 #Disabling grub bootloader timeout
-
 GRUB_CONFIG="/etc/default/grub"
-
 # Backup the existing GRUB config
 sudo cp "$GRUB_CONFIG" "$GRUB_CONFIG.bak"
-
 # Modify GRUB_TIMEOUT value
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/' "$GRUB_CONFIG"
-
 echo "✅ GRUB timeout disabled. Updating GRUB..."
-
-# Update GRUB
-if [ -f /boot/grub/grub.cfg ]; then
-   sudo  grub-mkconfig -o /boot/grub/grub.cfg
-elif [ -f /boot/grub2/grub.cfg ]; then
-    sudo grub-mkconfig -o /boot/grub2/grub.cfg
-else
-    echo "❌ GRUB config not found! Manual update may be required."
-    exit 1
-fi
-
+sudo update-grub
 echo "✅ GRUB update complete. ."
 # Reloading Font
 chsh -s $(which zsh)
