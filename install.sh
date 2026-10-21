@@ -1,84 +1,85 @@
 #!/bin/bash
-# Update system and install necessary packages
+set -eo pipefail
+
+# Arch Linux BSPWM rice installer
+echo "=================================================="
+echo "          Arch Linux BSPWM Rice Installer         "
+echo "=================================================="
+
+# Enable parallel downloads in pacman
 sudo sed -i 's/^#ParallelDownloads = [0-9]\+/ParallelDownloads = 5/' /etc/pacman.conf
+
+echo "Updating system packages..."
 sudo pacman -Syu --noconfirm
-sudo pacman -S --noconfirm base-devel xorg xorg-server reflector rsync curl xorg-xinit unzip xorg-xrandr xorg-xsetroot dbus
-con=$(curl -4 ifconfig.co/country-iso)
-echo -ne "
--------------------------------------------------------------------------
-                    Setting up $con mirrors for faster downloads
--------------------------------------------------------------------------
-"
-sudo reflector --verbose -c "$con" -l 5 --sort rate --save /etc/pacman.d/mirrorlist
-# Make directories
-mkdir ~/.config
-mkdir ~/.config/bspwm
-mkdir ~/.config/sxhkd
-mkdir ~/.config/polybar
-#wallpaper
-cp -r wallpaper.jpg $HOME/wallpaper.jpg
-# Apply config
-cp -r bspwm/ $HOME/.config/
-cp -r sxhkd/ $HOME/.config/
-cp -r polybar/ $HOME/.config/
-cp -r rofi $HOME/.config/
-sudo cp -r fonts/* /usr/share/fonts/
-cp -r alacritty/ $HOME/.config/
-mv $HOME/.zshrc $HOME/.zshrc_old
-cp -r .zshrc $HOME/
-chmod -R +x ~/.config/*
-chmod +x ~/.config/bspwm/bspwmrc
-chmod +x ~/.config/sxhkd/sxhkdrc
-chmod +x ~/.config/bspwm/bspwmrc
-chmod +x ~/.config/polybar/onedark-theme/launch.sh
-chmod +x ~/.config/polybar/onedark-theme/polybar/scripts/powermenu.sh
-chmod +x ~/.config/polybar/onedark-theme/polybar/scripts/update-system.sh
-chmod +x ~/.zshrc
-# Install yay
-cd /opt
-sudo git clone https://aur.archlinux.org/paru-bin
-sudo chown -R $(whoami):$(whoami) paru-bin
-cd paru-bin
-makepkg -si --noconfirm
+sudo pacman -S --needed --noconfirm base-devel xorg xorg-server reflector rsync curl xorg-xinit unzip xorg-xrandr xorg-xsetroot dbus
 
-#Installing apps
-paru -Syu --noconfirm update-grub bspwm ttf-fira-code samba cifs-utils starship lightdm-gtk-greeter variety pacman-contrib wmctrl code lightdm gtk3 gtk3-nocsd qt5-base qt5ct kvantum-qt5 lxappearance neovim xclip fastfetch sxhkd mpd rofi polybar picom pavucontrol feh wget alacritty thunar nerd-fonts zsh gedit
-paru -R --noconfirm xterm rxvt-unicode
-# Installing fonts
-paru -S papirus-icon-theme ttf-font-awesome --noconfirm
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
-sudo unzip FiraCode.zip -d /usr/share/fonts
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-sudo unzip Meslo.zip -d /usr/share/fonts
-cd /usr/share/themes/
-sudo git clone https://github.com/EliverLara/Nordic.git
-cd ~
-git clone https://github.com/vinceliuice/Layan-cursors.git
-cd ~/Layan-cursors/
-sudo ./install.sh
-systemctl --user enable dbus 
-#Installing my apps and setting up qemu
-curl -fsS https://dl.brave.com/install.sh | sh
-paru -S qemu-full virt-manager virt-viewer dnsmasq vde2 jetbrains-idea-ce bridge-utils openbsd-netcat ebtables iptables libguestfs 
-sudo systemctl enable --now libvirtd
-sudo sed -i 's/^#\(unix_sock_group = "libvirt"\)/\1/; s/^#\(unix_sock_rw_perms = "0770"\)/\1/' /etc/libvirt/libvirtd.conf
-sudo systemctl restart libvirtd
-sudo usermod -a -G libvirt $(whoami)
-newgrp libvirt
-sudo virsh net-autostart default
-#Disabling grub bootloader timeout
-GRUB_CONFIG="/etc/default/grub"
-# Backup the existing GRUB config
-sudo cp "$GRUB_CONFIG" "$GRUB_CONFIG.bak"
-# Modify GRUB_TIMEOUT value
-sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/' "$GRUB_CONFIG"
-echo "✅ GRUB timeout disabled. Updating GRUB..."
-sudo update-grub
-echo "✅ GRUB update complete. ."
-# Reloading Font
-chsh -s $(which zsh)
-fc-cache -vf
-echo "⚠️ WARNING: Reboot to apply changes"  
+# Optimize mirrors based on country
+con=$(curl -4s https://ifconfig.co/country-iso 2>/dev/null || echo "")
+if [ -n "$con" ]; then
+    echo "Configuring mirrors for country: $con"
+    sudo reflector --verbose -c "$con" -l 5 --sort rate --save /etc/pacman.d/mirrorlist || true
+fi
 
+# Create target directories safely
+mkdir -p "$HOME"/.config/{bspwm,sxhkd,polybar,rofi,alacritty}
 
+# Copy wallpaper
+if [ -f wallpaper.jpg ]; then
+    cp wallpaper.jpg "$HOME/wallpaper.jpg"
+fi
 
+# Apply dotfiles safely
+[ -d bspwm ] && cp -r bspwm/* "$HOME/.config/bspwm/"
+[ -d sxhkd ] && cp -r sxhkd/* "$HOME/.config/sxhkd/"
+[ -d polybar ] && cp -r polybar/* "$HOME/.config/polybar/"
+[ -d rofi ] && cp -r rofi/* "$HOME/.config/rofi/"
+[ -d alacritty ] && cp -r alacritty/* "$HOME/.config/alacritty/"
+
+if [ -d fonts ]; then
+    sudo mkdir -p /usr/share/fonts/local-fonts
+    sudo cp -r fonts/* /usr/share/fonts/local-fonts/
+fi
+
+# Backup existing zshrc if present
+if [ -f "$HOME/.zshrc" ]; then
+    cp "$HOME/.zshrc" "$HOME/.zshrc_backup_$(date +%s)"
+fi
+[ -f .zshrc ] && cp .zshrc "$HOME/.zshrc"
+
+# Permissions
+chmod -R +x "$HOME/.config/bspwm" "$HOME/.config/sxhkd" 2>/dev/null || true
+find "$HOME/.config/polybar" -type f -name "*.sh" -exec chmod +x {} + 2>/dev/null || true
+
+# Install yay if neither yay nor paru is installed
+if ! command -v yay >/dev/null 2>&1 && ! command -v paru >/dev/null 2>&1; then
+    echo "Installing yay AUR helper..."
+    TEMP_DIR=$(mktemp -d)
+    git clone https://aur.archlinux.org/yay-bin.git "$TEMP_DIR/yay-bin"
+    (cd "$TEMP_DIR/yay-bin" && makepkg -si --noconfirm)
+    rm -rf "$TEMP_DIR"
+fi
+
+AUR_HELPER="yay"
+if command -v paru >/dev/null 2>&1; then
+    AUR_HELPER="paru"
+fi
+
+echo "Installing Desktop Environment packages with $AUR_HELPER..."
+$AUR_HELPER -S --needed --noconfirm bspwm sxhkd polybar rofi picom feh alacritty thunar \
+    starship lightdm lightdm-gtk-greeter variety pacman-contrib wmctrl \
+    gtk3 gtk3-nocsd qt5-base qt5ct kvantum lxappearance neovim xclip fastfetch \
+    mpd pavucontrol wget zsh papirus-icon-theme ttf-font-awesome ttf-fira-code || true
+
+# Setup virtualization stack
+echo "Setting up KVM / QEMU..."
+sudo pacman -S --needed --noconfirm qemu-desktop virt-manager virt-viewer dnsmasq bridge-utils iptables libguestfs edk2-ovmf || true
+sudo systemctl enable --now libvirtd.service || true
+sudo usermod -aG libvirt "$USER"
+
+# Reload font cache
+echo "Reloading font cache..."
+fc-cache -f
+
+echo "=================================================="
+echo "✓ Arch BSPWM setup complete! Reboot to start your rice."
+echo "=================================================="
